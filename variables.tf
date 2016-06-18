@@ -26,7 +26,7 @@ variable "clientdepartment_tag" {
 }
 
 variable "chef_runlist" {
-  description "Chef run_list"
+  description = "Chef run_list"
 }
 
 ### AWS configuration
