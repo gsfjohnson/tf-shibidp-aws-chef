@@ -52,6 +52,7 @@ resource "template_file" "script" {
 
   vars {
     "fqdn" = "${var.aws_r53_record_name}.${var.aws_r53_zone_domain}"
+    "environment" = "${var.environment_tag}"
   }
 
   lifecycle {
