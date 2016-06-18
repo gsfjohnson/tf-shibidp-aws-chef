@@ -80,7 +80,7 @@ resource "aws_instance" "shibidp" {
   availability_zone = "${var.aws_availability_zone}"
 
   provisioner "local-exec" {
-    command = "sleep 30; ERR=255; while [ $ERR -gt 0 ]; do ssh -oConnectTimeout=1 -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no centos@${aws_instance.shibidp.public_ip} exit; ERR=$?; done; knife bootstrap ${aws_instance.shibidp.public_ip} -N ${var.aws_r53_record_name} -x centos --sudo -r '${var.run_list}'"
+    command = "sleep 30; ERR=255; while [ $ERR -gt 0 ]; do ssh -oConnectTimeout=1 -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no centos@${aws_instance.shibidp.public_ip} exit; ERR=$?; done; knife bootstrap ${aws_instance.shibidp.public_ip} -N ${var.aws_r53_record_name} -x centos --sudo -r '${var.chef_runlist}'"
   }
 
   root_block_device {
