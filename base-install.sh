@@ -2,8 +2,6 @@
 
 hostnamectl set-hostname ${fqdn}
 
-if [ "$(echo ${environment} | tr '[:upper:]' '[:lower:]' )" == "development" ]; then
-  echo "catch update issues in test phase, skip in dev for speed"
-else
+# update in phases test and beyond
+[ "$(echo ${environment} | tr '[:upper:]' '[:lower:]' )" != "development" ] && \
   yum -y update
-fi
